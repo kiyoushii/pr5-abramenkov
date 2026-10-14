@@ -1,0 +1,24 @@
+digraph Activity {
+  graph [dpi=220, fontname="DejaVu Sans", nodesep=0.55, ranksep=0.5];
+  node [fontname="DejaVu Sans", fontsize=13, style="rounded,filled", shape=box, fillcolor="#eaf1f8", color="#2f5496"];
+  edge [fontname="DejaVu Sans", fontsize=11, color="#555555"];
+  start [label="Начало", shape=ellipse, fillcolor="#e2f0d9", color="#548235"];
+  n1 [label="Получить строку часов", shape=parallelogram, fillcolor="#e4e0ee", color="#7030a0"];
+  n2 [label="Разделить строку на элементы:\nsplit(\";\", -1)"];
+  n3 [label="Ровно пять значений?", shape=diamond, style=filled, fillcolor="#fff2cc", color="#bf9000"];
+  n4 [label="A1: Для каждого из 5 элементов: проверить формат\n(regex ^(0|[1-9][0-9]*)$) и диапазон [0, 16],\nпреобразовать в int", fillcolor="#e2f0d9", color="#2e7d32"];
+  n5 [label="Все элементы корректны?", shape=diamond, style=filled, fillcolor="#fff2cc", color="#bf9000"];
+  n6 [label="Вычислить: сумму (total), медиану (average, вариант 1),\nдни с v > 8 (overtimeDays), max(0, сумма − 40) (weeklyOvertime),\nуровень продуктивности (addProductivityLevel)"];
+  n7 [label="A2: Сформировать отчёт из 5 показателей:\nсумма, среднее = медиана (2 знака), дней с переработкой,\nнедельная переработка, уровень продуктивности", fillcolor="#e2f0d9", color="#2e7d32"];
+  n8 [label="Сформировать сообщение об ошибке:\nпозиция (с 1) и причина"];
+  end [label="Завершение", shape=ellipse, fillcolor="#fce4d6", color="#c55a11"];
+  start -> n1 -> n2 -> n3;
+  n3 -> n4 [label="да"];
+  n3 -> n8 [label="нет"];
+  n4 -> n4 [label="следующий элемент", fontsize=10];
+  n4 -> n5;
+  n5 -> n6 [label="да"];
+  n5 -> n8 [label="нет"];
+  n6 -> n7 -> end;
+  n8 -> end;
+}

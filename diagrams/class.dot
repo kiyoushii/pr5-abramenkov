@@ -1,0 +1,8 @@
+digraph Classes {
+  graph [dpi=220, fontname="DejaVu Sans", rankdir=TB, nodesep=0.7, ranksep=0.8];
+  node [fontname="DejaVu Sans", fontsize=13, shape=record, style=filled, fillcolor="#f7fbff", color="#2f5496"];
+  edge [fontname="DejaVu Sans", fontsize=12];
+  SC [label="{SelfCheck|- passed : int\l- failed : int\l|+ main(String[]) : void\l- checkParseHours() : void\l- checkTotal() : void\l- checkAverage() : void\l- checkOvertime() : void\l- checkProductivity() : void\l- runDataDriven() : void\l- runInteractive() : void\l}"];
+  TA [label="{TimesheetAnalyzer|- DAYS : int = 5\l- MAX_HOURS : int = 16\l- DAILY_NORMAL_HOURS : int = 8\l- WEEKLY_NORMAL_HOURS : int = 40\l- LOW_LEVEL_LIMIT : double = 6.0\l- HIGH_LEVEL_LIMIT : double = 9.0\l|+ parseHours(String) : int[]\l+ total(int[]) : int\l+ average(int[]) : double   «медиана, вариант 1»\l+ overtimeDays(int[]) : int\l+ weeklyOvertime(int[]) : int\l+ addProductivityLevel(int[]) : String   «часть Б варианта 1»\l- splitLine(String) : String[]\l- parseValue(String, int) : int\l- requireWeek(int[]) : void\l}"];
+  SC -> TA [label="  вызывает методы", style=dashed, arrowhead=open];
+}
